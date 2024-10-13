@@ -1,7 +1,19 @@
 
+import { Box } from "@mui/material"
+import HomeDashboard from "../Components/HomeDashboard"
+import TopSection from "../Components/TopSection"
+
 const Dashboard = () => {
   return (
-    <div>This is the Dashboard page</div>
+    <Box>
+       <TopSection/>
+       <Box sx={{paddingInline:'2%'}}>
+       <HomeDashboard/>
+       </Box>
+     
+    </Box>
+     
+
   )
 }
 

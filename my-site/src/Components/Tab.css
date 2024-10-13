@@ -1,0 +1,19 @@
+.tab-container{
+    display: flex;
+    gap: 5px;
+    width: 230px;
+    height: 43px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.4s ease-in-out;
+    
+}
+.tab-container:hover{
+    background-color: #CED1D5;
+    cursor: pointer;
+}
+.tab-container p{
+    font-size: 16px;
+    font-weight: 600;
+}
