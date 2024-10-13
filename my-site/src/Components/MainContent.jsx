@@ -80,7 +80,7 @@ const MainContent = () => {
         </div>
 
         <div className="third-section">
-           <Box sx={{flex:2,display:'flex',height:'100%',flexDirection:'column', gap:2,alignItems:'center'}}>
+           <Box sx={{flex:2,width:{sx:'100%',lg:'50%',},display:'flex',height:'100%',flexDirection:'column', gap:2,alignItems:'center'}}>
             <Box boxShadow={1} className='current-progress-chart' sx={{width:'100%'}}>
                 <Typography textAlign='center' sx={{fontWeight:'700',fontSize:18}}>Current progress chart</Typography>
                 <Divider/>
@@ -119,7 +119,7 @@ const MainContent = () => {
           
            </Box>
 
-           <Box boxShadow={1} className='progress' sx={{flex:1,height:'100%',display:'flex',flexDirection:'column',gap:2}}>
+           <Box boxShadow={1} className='progress' sx={{width:{xs:'100%',lg:'25%'},flex:1,height:'100%',display:'flex',flexDirection:'column',gap:2}}>
             <Box>
 
             </Box>
@@ -129,7 +129,7 @@ const MainContent = () => {
                 <Typography sx={{color:grey[500],fontWeight:'700',fontSize:28}}>No data</Typography>
             </Box>
            </Box>
-           <Box boxShadow={1} sx={{flex:1,p:2,height:'100%'}}>
+           <Box boxShadow={1} sx={{width:{xs:'100%',lg:'25%'},flex:1,p:2,height:'100%'}}>
 
             <Box sx={{display:'flex',gap:2}}>
                 <Typography sx={{fontWeight:'700',fontSize:18}}>Recent Votes</Typography>

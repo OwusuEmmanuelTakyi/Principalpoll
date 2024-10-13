@@ -109,6 +109,8 @@
     margin-bottom: 10%;
 }
 
+
+
 .current-progress-chart{
    
     height: 100%;
@@ -133,4 +135,36 @@
     gap: 10px;
     padding: 10px;
     margin-top: 20px;
+}
+
+@media screen and (max-width:700px) {
+    .third-section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30%;
+    }
+    .first-section{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .button{
+        width: 100%;
+    }
+    .second-button{
+        width: 100%;
+    }
+    .right-side-buttons{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .first-section{
+        width: 100%;
+    }
 }
