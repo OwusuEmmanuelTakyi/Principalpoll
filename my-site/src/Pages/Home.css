@@ -1,0 +1,67 @@
+/* src/Pages/HomePage.css */
+.banner {
+    background-image: url('../Images/home.png'); /* Replace with actual image path */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .banner.small {
+    height: 250px;
+  }
+  
+  .banner h3 {
+    font-size: 3rem;
+    color: #fff;
+  }
+  
+  .banner h3.small {
+    font-size: 1.5rem;
+  }
+  
+  .vote-now-button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    background-color: #ff9800; /* Custom background color for Vote Now button */
+    color: #fff;
+    border: none;
+    transition: transform 0.3s;
+  }
+  
+  .vote-now-button:hover {
+    background-color: #ff5722; /* Change button color on hover */
+    transform: translateY(-5px); /* Slight lift effect */
+  }
+  .features-section {
+    padding: 40px 20px;
+    background-color: #fafafa;
+    text-align: center;
+  }
+  
+  .feature-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .competition-card {
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .competition-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .competition-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
