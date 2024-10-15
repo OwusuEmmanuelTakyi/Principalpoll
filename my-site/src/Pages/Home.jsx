@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Button, Box, Typography, TextField, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShieldAlt, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
+import { faShieldAlt, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 
 export default function HomePage() {
@@ -16,13 +16,12 @@ export default function HomePage() {
   const API_URL = 'https://api.example.com/competitions';
 
   useEffect(() => {
-    // Fetch competition data from the API when the component mounts
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        setCompetitions(data); // Set the competition data
-        setFilteredCompetitions(data); // Display all competitions by default
-        setLoading(false); // Set loading to false after data is fetched
+        setCompetitions(data);
+        setFilteredCompetitions(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching competitions:', error);
@@ -30,11 +29,9 @@ export default function HomePage() {
       });
   }, []);
 
-  // Handle search logic
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
 
-    // Filter the competition data based on the search term
     const filtered = competitions.filter((competition) =>
       competition.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
@@ -43,9 +40,16 @@ export default function HomePage() {
 
   return (
     <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 } }}>
-      {/* Top Section with Login and Signup */}
-      <Grid container spacing={2} justifyContent="flex-end" sx={{ mb: 2 }}>
+      
+      {/* Top Section with Logo, Login, and Signup */}
+      <Grid container spacing={2} alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
         <Grid item>
+          {/* Platform Logo */}
+          <img src="/images/logo.png" alt="Platform Logo" className="platform-logo" />
+        </Grid>
+        
+        <Grid item>
+          {/* Login and Signup Buttons */}
           <Button
             variant="outlined"
             color="primary"
@@ -55,8 +59,6 @@ export default function HomePage() {
           >
             Login
           </Button>
-        </Grid>
-        <Grid item>
           <Button
             variant="contained"
             color="primary"
@@ -146,6 +148,44 @@ export default function HomePage() {
       {/* New Section: Why Choose Our Voting Platform */}
       <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
         <Grid item xs={12}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3,color: 'black' }}>
+            Why Choose Our Voting Platform?
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faShieldAlt} size="3x" color="#007bff" />
+            <Typography variant="h6" sx={{ mt: 2 }}>Secure Voting</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Our platform is built with advanced encryption and security measures to ensure the safety of your elections.
+            </Typography>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faChartLine} size="3x" color="#28a745" />
+            <Typography variant="h6" sx={{ mt: 2 }}>Scalable Solutions</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Whether you're running a small local election or a national campaign, our platform scales to meet your needs.
+            </Typography>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
+            <Typography variant="h6" sx={{ mt: 2 }}>Easy to Use</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+      {/* New Section: Why Choose Our Voting Platform */}
+      <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
+        <Grid item xs={12}>
           <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
             Why Choose Our Voting Platform?
           </Typography>
@@ -175,6 +215,44 @@ export default function HomePage() {
           <Box sx={{ textAlign: 'center', p: 2 }}>
             <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
             <Typography variant="h6" sx={{ mt: 2 }}>Easy to Use</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+      {/* New Section: Why Choose Our Voting Platform */}
+      <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
+        <Grid item xs={12}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
+            Why Choose Our Voting Platform?
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faShieldAlt} size="3x" color="#007bff" />
+            <Typography variant="h6" sx={{ mt: 2 }}>prinvote</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Our platform is built with advanced encryption and security measures to ensure the safety of your elections.
+            </Typography>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faChartLine} size="3x" color="#28a745" />
+            <Typography variant="h6" sx={{ mt: 2 }}>contact us</Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Whether you're running a small local election or a national campaign, our platform scales to meet your needs.
+            </Typography>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
+            <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
+            <Typography variant="h6" sx={{ mt: 2 }}>follow us</Typography>
             <Typography variant="body1" sx={{ mt: 1 }}>
               Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
             </Typography>
