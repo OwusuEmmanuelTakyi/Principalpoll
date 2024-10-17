@@ -1,10 +1,12 @@
 // src/Pages/HomePage.js
 import React, { useState, useEffect } from 'react';
-import { Grid, Button, Box, Typography, TextField, CircularProgress } from '@mui/material';
+import { Grid, Button, Box, Typography, TextField, CircularProgress, Accordion, AccordionSummary, AccordionDetails, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShieldAlt, faChartLine, faUsers } from '@fortawesome/free-solid-svg-icons';
-import './Home.css';
+import { faTwitter, faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import './Home.css'; // Updated the name
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +14,6 @@ export default function HomePage() {
   const [filteredCompetitions, setFilteredCompetitions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Example API URL, replace with your actual endpoint
   const API_URL = 'https://api.example.com/competitions';
 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function HomePage() {
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
-
     const filtered = competitions.filter((competition) =>
       competition.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
@@ -39,226 +39,213 @@ export default function HomePage() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, p: { xs: 2, md: 4 } }}>
-      
-      {/* Top Section with Logo, Login, and Signup */}
-      <Grid container spacing={2} alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
-        <Grid item>
-          {/* Platform Logo */}
-          <img src="/images/logo.png" alt="Platform Logo" className="platform-logo" />
+    <Box>
+      {/* Top Section with Logo and Navigation */}
+      <Container maxWidth="lg">
+        <Grid container spacing={3} alignItems="center" justifyContent="space-between" className="top-bar">
+          <Grid item>
+            <img src="/images/logo.png" alt="Platform Logo" className="platform-logo" />
+          </Grid>
+          <Grid item>
+            <Button variant="outlined" color="primary" component={Link} to="/login" className="top-button">
+              Login
+            </Button>
+            <Button variant="contained" color="primary" component={Link} to="/signup" className="top-button">
+              Signup
+            </Button>
+          </Grid>
         </Grid>
-        
-        <Grid item>
-          {/* Login and Signup Buttons */}
-          <Button
+      </Container>
+
+       {/* Banner Section with Two Columns */}
+       <Box className="banner-section">
+        <Container maxWidth="lg">
+          <Grid container spacing={4} alignItems="center">
+            {/* Left Side: Text & Buttons */}
+            <Grid item xs={12} md={6}>
+              <Typography variant="h3" className="banner-text">
+                Welcome to Our Voting App
+              </Typography>
+              <Typography variant="body1" className="banner-subtext">
+                Your trusted platform for secure and seamless voting experiences across multiple competitions.
+              </Typography>
+              <Box className="banner-btn-container">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  component={Link}
+                  to="/competitions"
+                  className="vote-now-button"
+                >
+                  Vote Now
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size="large"
+                  component={Link}
+                  to="/learn-more"
+                  className="learn-more-button"
+                >
+                  Learn More
+                </Button>
+              </Box>
+            </Grid>
+
+            {/* Right Side: Image */}
+            <Grid item xs={12} md={6}>
+              <Box className="banner-image-container">
+              <img src={require('../Images/home2.png')} alt="Voting Illustration" className="banner-image" />
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Search Section */}
+      <Container maxWidth="md">
+        <Box sx={{ textAlign: 'center', mt: 4 }}>
+          <TextField
+            label="Search Competitions"
             variant="outlined"
-            color="primary"
-            component={Link}
-            to="/login"
-            sx={{ marginRight: 2 }}
-          >
-            Login
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            component={Link}
-            to="/signup"
-          >
-            Signup
-          </Button>
-        </Grid>
-      </Grid>
+            value={searchTerm}
+            onChange={handleSearch}
+            fullWidth
+            sx={{ maxWidth: '600px' }}
+          />
+        </Box>
 
-      <Grid container spacing={3}>
-        {/* Banner Section with "Vote Now" Button */}
-        <Grid item xs={12}>
-          <Box className="banner">
-            <Typography variant="h3" component="div" sx={{ color: '#fff' }}>
-              Welcome to Our Voting App
-            </Typography>
-
-            {/* Vote Now Button */}
-            <Box sx={{ textAlign: 'center', mt: 4 }}>
-              <Button
-                variant="contained"
-                color="secondary"
-                size="large"
-                component={Link}
-                to="/competitions"
-                className="vote-now-button"
-              >
-                Vote Now
-              </Button>
-            </Box>
+        {/* Loading Spinner */}
+        {loading && (
+          <Box sx={{ textAlign: 'center', mt: 4 }}>
+            <CircularProgress />
+            <Typography variant="h6">Loading Competitions...</Typography>
           </Box>
-        </Grid>
+        )}
 
-        {/* Search Box Section */}
-        <Grid item xs={12}>
-          <Box sx={{ textAlign: 'center', mt: 3 }}>
-            <TextField
-              label="Search for Competitions"
-              variant="outlined"
-              value={searchTerm}
-              onChange={handleSearch}
-              fullWidth
-              sx={{ maxWidth: '600px', margin: '0 auto' }}
-            />
-          </Box>
-
-          {/* Display Loading Spinner While Fetching */}
-          {loading && (
-            <Box sx={{ textAlign: 'center', mt: 4 }}>
-              <CircularProgress />
-              <Typography variant="h6">Loading Competitions...</Typography>
-            </Box>
-          )}
-
-          {/* Display Filtered Competitions */}
-          <Box sx={{ mt: 3 }}>
-            {!loading && filteredCompetitions.length > 0 ? (
-              <Grid container spacing={2} justifyContent="center">
-                {filteredCompetitions.map((competition) => (
-                  <Grid item xs={12} sm={6} md={3} key={competition.id}>
-                    <Box className="competition-card" sx={{ textAlign: 'center', p: 2, border: '1px solid #ddd', borderRadius: '8px' }}>
-                      <img
-                        src={competition.image}
-                        alt={competition.name}
-                        style={{ width: '100%', height: '150px', objectFit: 'cover' }}
-                      />
-                      <Typography variant="h6" sx={{ mt: 2 }}>
-                        {competition.name}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                ))}
-              </Grid>
+        {/* Display Competitions */}
+        {!loading && (
+          <Grid container spacing={3} sx={{ mt: 4 }}>
+            {filteredCompetitions.length > 0 ? (
+              filteredCompetitions.map((competition) => (
+                <Grid item xs={12} sm={6} md={4} key={competition.id}>
+                  <Box className="competition-card">
+                    <img src={competition.image} alt={competition.name} className="competition-image" />
+                    <Typography variant="h6" sx={{ mt: 2 }}>
+                      {competition.name}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))
             ) : (
-              !loading && (
-                <Typography variant="h6" sx={{ textAlign: 'center', mt: 2 }}>
-                  No Competitions Found
-                </Typography>
-              )
+              <Typography variant="h6" sx={{ textAlign: 'center', mt: 2 }}>
+                No Competitions Found
+              </Typography>
             )}
-          </Box>
-        </Grid>
-      </Grid>
+          </Grid>
+        )}
+      </Container>
 
-      {/* New Section: Why Choose Our Voting Platform */}
-      <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
-        <Grid item xs={12}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3,color: 'black' }}>
-            Why Choose Our Voting Platform?
+      {/* Features Section */}
+      <Container maxWidth="lg" className="features-section">
+        <Typography variant="h4" className="section-title">
+          Why Choose Our Voting Platform?
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={4}>
+            <Box className="feature-box">
+              <FontAwesomeIcon icon={faShieldAlt} size="3x" />
+              <Typography variant="h6">Secure Voting</Typography>
+              <Typography variant="body2">Built with advanced encryption to ensure the safety of your votes.</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Box className="feature-box">
+              <FontAwesomeIcon icon={faChartLine} size="3x" />
+              <Typography variant="h6">Scalable Solutions</Typography>
+              <Typography variant="body2">Suitable for small or large elections, our platform scales effortlessly.</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Box className="feature-box">
+              <FontAwesomeIcon icon={faUsers} size="3x" />
+              <Typography variant="h6">User-Friendly</Typography>
+              <Typography variant="body2">An intuitive interface makes it easy to use for both admins and voters.</Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* FAQ Section */}
+      <Container maxWidth="md" className="faq-section">
+        <Typography variant="h4" className="section-title" sx={{ textAlign: 'center', mb: 4 }}>
+          Frequently Asked Questions
+        </Typography>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>What is Prinvote?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Prinvote is a secure and scalable e-voting platform...</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>What is Prinvote?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Prinvote is a secure and scalable e-voting platform...</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>What is Prinvote?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Prinvote is a secure and scalable e-voting platform...</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>What is Prinvote?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>Prinvote is a secure and scalable e-voting platform...</Typography>
+          </AccordionDetails>
+        </Accordion>
+        {/* Additional Accordions */}
+      </Container>
+
+      {/* Footer Section */}
+      <Box className="footer-section">
+        <Container maxWidth="lg">
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={4}>
+              <Typography variant="body1">
+                Prinvote is Ghana and Africa’s premier platform for secured and seamless e-voting and USSD voting experiences.
+              </Typography>
+            </Grid>
+            <Grid item xs={18} sm={4}>
+              <Link to="/terms" className="footer-link">Terms & Conditions</Link>
+            </Grid>
+            <Grid item xs={12} sm={4} className="social-icons">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faFacebook} size="2x" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faTwitter} size="2x" />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} size="2x" />
+              </a>
+            </Grid>
+          </Grid>
+          <Typography variant="body2" sx={{ textAlign: 'center', mt: 2 }}>
+            &copy; {new Date().getFullYear()} Prinvote. All Rights Reserved.
           </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faShieldAlt} size="3x" color="#007bff" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Secure Voting</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our platform is built with advanced encryption and security measures to ensure the safety of your elections.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faChartLine} size="3x" color="#28a745" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Scalable Solutions</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Whether you're running a small local election or a national campaign, our platform scales to meet your needs.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Easy to Use</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-      {/* New Section: Why Choose Our Voting Platform */}
-      <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
-        <Grid item xs={12}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-            Why Choose Our Voting Platform?
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faShieldAlt} size="3x" color="#007bff" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Secure Voting</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our platform is built with advanced encryption and security measures to ensure the safety of your elections.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faChartLine} size="3x" color="#28a745" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Scalable Solutions</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Whether you're running a small local election or a national campaign, our platform scales to meet your needs.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
-            <Typography variant="h6" sx={{ mt: 2 }}>Easy to Use</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
-      {/* New Section: Why Choose Our Voting Platform */}
-      <Grid container spacing={3} className="features-section" sx={{ mt: 6 }}>
-        <Grid item xs={12}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-            Why Choose Our Voting Platform?
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faShieldAlt} size="3x" color="#007bff" />
-            <Typography variant="h6" sx={{ mt: 2 }}>prinvote</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our platform is built with advanced encryption and security measures to ensure the safety of your elections.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faChartLine} size="3x" color="#28a745" />
-            <Typography variant="h6" sx={{ mt: 2 }}>contact us</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Whether you're running a small local election or a national campaign, our platform scales to meet your needs.
-            </Typography>
-          </Box>
-        </Grid>
-
-        <Grid item xs={12} sm={4}>
-          <Box sx={{ textAlign: 'center', p: 2 }}>
-            <FontAwesomeIcon icon={faUsers} size="3x" color="#ffc107" />
-            <Typography variant="h6" sx={{ mt: 2 }}>follow us</Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              Our intuitive interface makes it easy for both administrators and voters to use the platform without any hassle.
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
+        </Container>
+      </Box>
     </Box>
   );
 }

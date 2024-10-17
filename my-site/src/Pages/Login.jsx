@@ -1,7 +1,11 @@
+import React from 'react'
+
+import HomeDashboard from '../Components/HomeDashboard'
 
 const Login = () => {
   return (
-    <div>This is the login page</div>
+    
+    <HomeDashboard/>
   )
 }
 
