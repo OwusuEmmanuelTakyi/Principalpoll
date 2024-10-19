@@ -134,17 +134,20 @@ const CompetitionsContent = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="rate">Rate (GHC / vote)</label>
-            <input
-              type="number"
-              id="rate"
-              className="form-control"
-              placeholder="Enter rate per vote"
-              value={rate}
-              onChange={(e) => setRate(e.target.value)}
-              required
-            />
-          </div>
+  <label htmlFor="rate">Rate (GHC / vote)</label>
+  <input
+    type="number"
+    id="rate"
+    className="form-control"
+    placeholder="Enter rate per vote"
+    value={rate}
+    onChange={(e) => setRate(e.target.value)}
+    step="0.1" // Increment by 0.1
+    min="0.5" // Minimum value is 0.5
+    required
+  />
+</div>
+
 
           <div className="form-group">
             <label htmlFor="endDate">End Date</label>
