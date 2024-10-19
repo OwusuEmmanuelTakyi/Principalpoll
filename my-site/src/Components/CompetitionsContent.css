@@ -1,4 +1,296 @@
-.competitions-container{
+.competitions-container {
     flex: 4;
     margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    color: #072D44; /* Dark Blue */
+}
+
+.add-event-btn {
+    display: flex;
+    align-items: center;
+    background-color: #064469; /* Blue */
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-event-btn:hover {
+    background-color: #072D44; /* Dark Blue on Hover */
+    transform: translateY(-2px); /* Subtle hover animation */
+}
+
+.plus-icon {
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+/* Form */
+.competition-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.competition-form:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1); /* Elevated shadow */
+}
+
+.competition-form h3 {
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.form-description {
+    font-size: 1rem;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #064469; /* Blue */
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f8f9fa; /* Light Grey Background */
+}
+
+.form-control:focus {
+    border-color: #5790AB; /* Soft Blue */
+    outline: none;
+    box-shadow: 0 0 8px rgba(87, 144, 171, 0.2); /* Glow on focus */
+}
+
+textarea.form-control {
+    resize: none;
+    height: 120px;
+}
+
+/* Image Upload */
+.image-upload {
+    text-align: center;
+    border: 2px dashed #ccc;
+    padding: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.image-upload:hover {
+    background-color: #f0f8fc; /* Light Blue Background on Hover */
+    border-color: #5790AB; /* Soft Blue */
+}
+
+.image-upload .upload-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.image-upload .file-input {
+    display: none;
+}
+
+.file-upload-label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #064469; /* Blue */
+    font-weight: bold;
+}
+
+.upload-helper {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-top: 10px;
+}
+
+/* Submit Button */
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    background-color: #9CCDDB; /* Light Blue */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #064469; /* Blue on Hover */
+    transform: translateY(-2px);
+}
+
+/* Add Category Button */
+.btn-add-category {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #D0D7E1; /* Grey-Blue */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-add-category:hover {
+    background-color: #064469; /* Blue */
+    transform: translateY(-2px);
+}
+
+/* Switch Container */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* When Checkbox is Checked */
+input:checked + .slider {
+    background-color: #064469; /* Blue */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Competitor Section */
+.competitor-card {
+    background-color: #D0E3ED; /* Light Blue Background */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.competitor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.competitor-header h5 {
+    margin: 0;
+    color: #064469; /* Blue */
+}
+
+.remove-competitor-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #d9534f;
+    font-size: 1.2rem;
+}
+
+.uploaded-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.uploaded-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.remove-image-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.remove-image-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Loading state */
+.loading-text {
+    font-size: 1rem;
+    color: #064469;
+    font-weight: bold;
+    margin-top: 10px;
 }
