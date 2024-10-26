@@ -1,11 +1,15 @@
-import Home from "./Pages/Home";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
 
 
 function App() {
   return (
-    <div className="text-yellow-500 text-6xl w-full h-screen flex justify-center items-center">
-   <Home/>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
