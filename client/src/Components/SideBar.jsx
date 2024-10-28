@@ -52,7 +52,7 @@ const DashboardPages = [
 ]
 const SideBar = () => {
   return (
-    <div className=" w-[100%] bg-gray-100 h-screen p-8">
+    <div className=" w-[100%] bg-gray-100 h-[100%] p-8">
         {
             DashboardPages.map((page,index) => (
                 <div key={index} >

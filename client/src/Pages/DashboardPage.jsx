@@ -5,18 +5,24 @@ import DashboardContent from '../Components/DashboardContent';
 
 const DashboardPage = () => {
   return (
-    <div className='w-[98%] h-screen bg-slate-50 flex flex-col gap-2' >
-       <NavBar/>
-       <div className='flex w-full'>
-            <div className='hidden md:flex md:w-[20%]'>
-
-                <SideBar/>
-            </div>
-            <main className='w-full md:w-[80%]'>
-                <DashboardContent/>
-            </main>
-       </div>
-       <footer>Footer</footer>
+    <div className='w-full h-screen bg-slate-50 flex flex-col'>
+      <NavBar />
+      
+      <div className='flex flex-1'>
+        {/* Sidebar is fixed on lg screens and hidden on smaller screens */}
+        <div className='hidden lg:flex lg:w-[20%] lg:fixed lg:left-0 lg:top-16 bg-white shadow-md h-[80%] z-[0] mt-8'>
+          <SideBar />
+        </div>
+        
+        {/* Main content area */}
+        <main className='flex-1 lg:ml-[20%] p-4'>
+          <DashboardContent />
+        </main>
+      </div>
+      
+      <footer className='bg-gray-200 text-center p-4'>
+        Footer
+      </footer>
     </div>
   );
 }

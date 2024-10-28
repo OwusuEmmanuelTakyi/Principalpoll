@@ -5,7 +5,7 @@ import { Avatar } from '@mui/material';
 
 function NavBar() {
   return (
-    <div className='w-full h-30 flex items-center p-5'>
+    <div className='w-full h-30 flex items-center p-5 z-10'>
         <div className="w-full h-20 flex justify-between items-center">
             <img src={logo} alt="/" style={{maxWidth:'150px'}}/>
             <div className='flex gap-5'>
