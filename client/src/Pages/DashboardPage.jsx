@@ -8,7 +8,7 @@ import DashboardContent from '../Components/DashboardContent';
 const DashboardPage = () => {
   return (
     <div className='w-full h-screen bg-slate-50 flex flex-col'>
-      <NavBar />
+     
       
       <div className='flex flex-1'>
         {/* Sidebar is fixed on lg screens and hidden on smaller screens */}
