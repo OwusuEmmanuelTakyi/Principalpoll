@@ -1,4 +1,4 @@
-import { Avatar, Divider } from '@mui/material'
+import { Avatar } from '@mui/material'
 import React from 'react'
 import SecurityIcon from '@mui/icons-material/Security';
 
