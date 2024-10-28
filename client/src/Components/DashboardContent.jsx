@@ -4,7 +4,17 @@ import SecurityIcon from '@mui/icons-material/Security';
 
 import Coolers from '../theme';
 import LineChart from './LineChart';
-import { grey } from '@mui/material/colors';
+
+
+
+const data = [
+    { id: 1, name: "Alice", votes: 10 },
+    { id: 2, name: "Bob", votes: 15 },
+    { id: 3, name: "Charlie", votes: 5 },
+    { id: 4, name: "Diana", votes: 20 },
+    { id: 5, name: "Ethan", votes: 12 }
+];
+
 
 const DashboardContent = () => {
     const currentDate = new Date().toLocaleDateString()
@@ -63,7 +73,7 @@ const DashboardContent = () => {
 
         {/*Second content*/}
 
-        <div className='grid grid-rows-4 md:grid-rows-1 md:grid-cols-4 gap-x-3 w-full px-3 min-h-[70vh] mt-5 gap-y-4'>
+        <div className='grid grid-rows-4 md:grid-rows-1 md:grid-cols-4 gap-x-3 w-full px-3 min-h-[25vh] mt-5 gap-y-4'>
             <div className='gap-2 flex-col w-full border rounded-md border-gray-500 max-h-[150px] flex justify-center items-center '>
                 <h4 className='text-blue-400 text-2xl font-bold '>Total Competitions</h4>
                 <p className='text-3xl font-bold text-grey-600'>2000</p>
@@ -87,6 +97,35 @@ const DashboardContent = () => {
                </div>
 
             </div>
+        </div>
+
+        {/*third contenet Table*/}
+
+        <div className='bg-blue-50 flex flex-col gap-4 w-full h-auto px-2 py-2 mt-4 justify-center'>
+            <h2 className='text-blue-400 text-3xl text-center font-bold'>Recent Votes</h2>
+            {
+    data.length > 0 && (
+        <table className='w-full h-full bg-aliceblue border border-black'>
+            <thead className='bg-black text-white'>
+                <tr className='p-3 border border-b-gray-700 text-center font-bold'>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Votes</td>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((dat) => (
+                    <tr key={dat.id} className='p-6 bg-slate-500 border border-b-gray-700 text-center'>
+                        <td className='border border-r-2-black text-[#000] font-semibold'>{dat.id}</td>
+                        <td className='border border-r-2-black text-[#000] font-semibold'>{dat.name}</td>
+                        <td className='border border-r-2-black text-[#000] font-semibold'>{dat.votes}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    )
+}
+
         </div>
 
    </div> 
