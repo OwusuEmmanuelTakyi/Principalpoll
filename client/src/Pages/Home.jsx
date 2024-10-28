@@ -1,10 +1,10 @@
-// src/pages/Home.js
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle, faShieldAlt, faExpand, faUserFriends, faChevronDown, faChevronUp, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 import logo from '../Images/logo.png';
-import backgroundImage from '../Images/background.png'; // Replace with the actual path of your background image in the src folder
+import backgroundImage from '../Images/background.png';
 
 const Home = () => {
   const [competitions, setCompetitions] = useState([]);
@@ -82,12 +82,12 @@ const Home = () => {
             />
           </div>
 
-          {/* Buttons */}
+          {/* Links */}
           <div className="flex space-x-4">
-            <button className="text-[#C1DAF] hover:text-white">Login &gt;</button>
-            <button className="px-4 py-2 text-white bg-[#00A8CC] rounded-full hover:bg-[#0C7B93] transform transition-transform duration-200 hover:scale-105">
+            <Link to="/login" className="px-4 py-2 text-[#C1DAF] hover:text-white">Login &gt;</Link>
+            <Link to="/signup" className="px-4 py-2 text-white bg-[#00A8CC] rounded-full hover:bg-[#0C7B93] transform transition-transform duration-200 hover:scale-105">
               Sign up &gt;
-            </button>
+            </Link>
           </div>
         </nav>
       </div>
@@ -99,11 +99,13 @@ const Home = () => {
           PrincipalPoll delivers a cutting-edge, secure, and user-friendly electronic voting platform that empowers communities to participate in elections and competitions with ease. Join us in redefining the voting experience—efficient, transparent, and designed for seamless participation at every level.
         </p>
         <div className="flex items-center justify-center space-x-4">
-          <button className="bg-[#00A8CC] text-white py-2 px-6 rounded-full font-semibold hover:bg-[#0C7B93] transform transition-transform duration-200 hover:scale-105">Vote now</button>
-          <button className="flex items-center space-x-2 text-[#00A8CC] hover:text-[#0C7B93] transform transition-transform duration-200 hover:scale-105">
+          <Link to="/vote" className="bg-[#00A8CC] text-white py-2 px-6 rounded-full font-semibold hover:bg-[#0C7B93] transform transition-transform duration-200 hover:scale-105">
+            Vote now
+          </Link>
+          <Link to="/nominate" className="flex items-center space-x-2 text-[#00A8CC] hover:text-[#0C7B93] transform transition-transform duration-200 hover:scale-105">
             <FontAwesomeIcon icon={faPlayCircle} className="text-xl" />
             <span>Nominate</span>
-          </button>
+          </Link>
         </div>
       </div>
       
@@ -142,9 +144,9 @@ const Home = () => {
               <div key={competition.id} className="p-4 bg-white rounded-lg shadow-md text-center transform transition-transform duration-300 hover:scale-105">
                 <h4 className="text-lg font-semibold mb-2">{competition.title}</h4>
                 <p className="text-gray-600 text-sm mb-4">{competition.description}</p>
-                <button className="bg-[#00A8CC] text-white py-1 px-3 rounded-full text-sm hover:bg-[#0C7B93]">
+                <Link to={`/competition/${competition.id}`} className="bg-[#00A8CC] text-white py-1 px-3 rounded-full text-sm hover:bg-[#0C7B93]">
                   Vote
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -219,11 +221,11 @@ const Home = () => {
               <ul className="space-y-2">
                 <li className="flex items-center justify-center sm:justify-start">
                   <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-[#00A8CC]" />
-                  info@principalpoll.com
+                  principalpoll1@gmail.com
                 </li>
                 <li className="flex items-center justify-center sm:justify-start">
                   <FontAwesomeIcon icon={faPhone} className="mr-2 text-[#00A8CC]" />
-                  0599111700
+                  0593636309
                 </li>
               </ul>
             </div>
