@@ -8,7 +8,7 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { Link } from 'react-router-dom';
 
-const DashboardPages = [
+ export const DashboardPages = [
     {
         title: 'Dashboard',
         icon: <DashboardIcon/>,
