@@ -4,7 +4,9 @@ import Home from './Pages/Home';
 import DashboardPage from './Pages/DashboardPage';
 import Events from './Pages/Events';
 import NavBar from './Components/NavBar';
-
+import Contestants from './Pages/Contestants';
+import Votes from './Pages/Votes';
+import Cashout from './Pages/Cashout';
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/dashboard/events" element={<Events />} />
+      <Route path='/dashboard/contestants' element={<Contestants/>} />
+      <Route path='/dashboard/votes' element={<Votes/>} />
+      <Route path='/dashboard/cashout' element={<Cashout/>} />
       </Routes>
     </Router>
   );
