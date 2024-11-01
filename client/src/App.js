@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar';
 import Contestants from './Pages/Contestants';
 import Votes from './Pages/Votes';
 import Cashout from './Pages/Cashout';
+import Nominations from './Pages/Nominations';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path='/dashboard/contestants' element={<Contestants/>} />
       <Route path='/dashboard/votes' element={<Votes/>} />
       <Route path='/dashboard/cashout' element={<Cashout/>} />
+      <Route path='/dashboard/nominations' element={<Nominations/>} />
       </Routes>
     </Router>
   );
